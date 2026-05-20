@@ -11,20 +11,29 @@ services:
 
   #-------Postgres 17.5 Database Service-------
   postgres:
-     image: postgres:17.5
-     container_name: postgres-trycore
-     restart: always
-     shm_size: 128mb
-     ports:
-         - "5432:5432"
-     volumes:
-         - postgres_data:/var/lib/postgresql/data 
-     environment:
-         POSTGRES_USER: trycore_postgres
-         POSTGRES_PASSWORD: MySecurePassword123!
-         POSTGRES_DB: trycore_valor_ganado_db
-     networks:
-         - backend_network
+    image: postgres:17.5
+    container_name: postgres-trycore
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: trycore_postgres
+      POSTGRES_PASSWORD: MySecurePassword123!
+      POSTGRES_DB: trycore_valor_ganado_db
+    networks:
+      - backend_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trycore_postgres -d trycore_valor_ganado_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ===========================================
+  # EVM CALCULATOR SERVICE (Python / FastAPI)
+  # ===========================================
 
   #-------EVM Calculator FastAPI Service-------
   evm-calculator:
@@ -37,23 +46,40 @@ services:
       - "8001:8001"
     networks:
       - backend_network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8001/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  ### Api TryCore Valor Ganado Service ###
-  # api:
-  #   container_name: trycore.valor.ganado.backend.api
-  #   build:
-  #     context: ../
-  #     dockerfile: src/trycore.valor.ganado.api/Dockerfile
-  #   depends_on:
-  #     - postgres
-  #     - evm-calculator
-  #   ports:
-  #     - "5000:8080"
-  #   env_file:
-  #     - .env.develop
-  #   networks:
-  #     - backend_network
+  # ===========================================
+  # API SERVICE (.NET 8)
+  # ===========================================
+
+  #-------Trycore Valor Ganado API Service-------
+  api:
+    container_name: trycore-api
+    build:
+      context: ../
+      dockerfile: src/trycore.valor.ganado.api/Dockerfile
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      evm-calculator:
+        condition: service_healthy
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: >-
+        Host=postgres;Port=5432;Database=trycore_valor_ganado_db;
+        Username=trycore_postgres;Password=MySecurePassword123!
+      EvmCalculator__BaseUrl: http://evm-calculator:8001
+    networks:
+      - backend_network
 
 volumes:
-    postgres_data:
-      driver: local
+  postgres_data:
+    driver: local

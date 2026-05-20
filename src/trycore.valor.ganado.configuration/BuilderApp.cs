@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using trycore.valor.ganado.application;
 using trycore.valor.ganado.infrastructure;
+using trycore.valor.ganado.infrastructure.Persistence;
 
 namespace trycore.valor.ganado.configuration
 {
@@ -37,6 +40,24 @@ namespace trycore.valor.ganado.configuration
             builder.Services.AddInfrastructure(builder.Configuration);
 
             var app = builder.Build();
+
+            // Ejecutar migraciones pendientes automáticamente al iniciar
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
+                var logger = loggerFactory.CreateLogger("Migrations");
+                try
+                {
+                    await db.Database.MigrateAsync();
+                    logger.LogInformation("Migraciones aplicadas correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Error al aplicar migraciones de la base de datos.");
+                    throw;
+                }
+            }
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>
