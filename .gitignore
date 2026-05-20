@@ -56,6 +56,14 @@ Logs/
 # Crash dumps
 *.dmp
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
 # OS generated files
 .DS_Store
 Thumbs.db
