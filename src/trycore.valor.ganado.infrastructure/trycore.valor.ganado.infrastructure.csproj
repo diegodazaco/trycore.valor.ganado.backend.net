@@ -10,4 +10,8 @@
     <ProjectReference Include="..\trycore.valor.ganado.domain\trycore.valor.ganado.domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+  </ItemGroup>
+
 </Project>
