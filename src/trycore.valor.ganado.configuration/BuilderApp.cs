@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using trycore.valor.ganado.application;
 using trycore.valor.ganado.infrastructure;
 
 namespace trycore.valor.ganado.configuration
@@ -14,6 +15,7 @@ namespace trycore.valor.ganado.configuration
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);
 
             var app = builder.Build();

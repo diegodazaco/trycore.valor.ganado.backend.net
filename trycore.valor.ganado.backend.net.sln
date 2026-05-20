@@ -24,6 +24,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.test", "tests\trycore.valor.ganado.test\trycore.valor.ganado.test.csproj", "{25777057-6E6E-473E-A875-973DE027150A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{E5A3A774-869B-4559-B026-B475732D9FAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "evm-calculator", "evm-calculator", "{890300F3-965A-406A-8B76-D7A0AEAA231A}"
+	ProjectSection(SolutionItems) = preProject
+		services\evm-calculator\calculator.py = services\evm-calculator\calculator.py
+		services\evm-calculator\Dockerfile = services\evm-calculator\Dockerfile
+		services\evm-calculator\main.py = services\evm-calculator\main.py
+		services\evm-calculator\models.py = services\evm-calculator\models.py
+		services\evm-calculator\requirements-dev.txt = services\evm-calculator\requirements-dev.txt
+		services\evm-calculator\requirements.txt = services\evm-calculator\requirements.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B0D4B74B-AC8D-4D52-86D8-4FBFD7627110}"
+	ProjectSection(SolutionItems) = preProject
+		services\evm-calculator\tests\test_calculator.py = services\evm-calculator\tests\test_calculator.py
+		services\evm-calculator\tests\__init__.py = services\evm-calculator\tests\__init__.py
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0C329DB9-22B6-4638-847D-62FB88025C89}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\init.sql = scripts\init.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +88,8 @@ Global
 		{814EB408-1D72-48F1-B5E2-8BA608BAE150} = {C2A62CE3-9DC8-43C2-A801-BDE66230F9C5}
 		{A727EEAA-44BA-428F-A283-59B4B11A561C} = {C2A62CE3-9DC8-43C2-A801-BDE66230F9C5}
 		{25777057-6E6E-473E-A875-973DE027150A} = {DBD58356-2F30-446D-8DAB-A2A43D2EBD94}
+		{890300F3-965A-406A-8B76-D7A0AEAA231A} = {E5A3A774-869B-4559-B026-B475732D9FAF}
+		{B0D4B74B-AC8D-4D52-86D8-4FBFD7627110} = {890300F3-965A-406A-8B76-D7A0AEAA231A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {060BF7CB-AE2C-47C5-A7A4-B388AC650907}
