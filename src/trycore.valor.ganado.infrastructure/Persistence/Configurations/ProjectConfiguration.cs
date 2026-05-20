@@ -27,17 +27,17 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
 
         builder.Property(p => p.CutoffDate)
             .HasColumnName("cutoff_date")
-            .HasColumnType("timestamp without time zone")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         builder.Property(p => p.CreatedAt)
             .HasColumnName("created_at")
-            .HasColumnType("timestamp without time zone")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         builder.Property(p => p.UpdatedAt)
             .HasColumnName("updated_at")
-            .HasColumnType("timestamp without time zone")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         builder.HasMany(p => p.Activities)

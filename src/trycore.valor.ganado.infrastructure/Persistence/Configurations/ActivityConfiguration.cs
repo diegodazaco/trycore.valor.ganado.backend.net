@@ -47,12 +47,12 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 
         builder.Property(a => a.CreatedAt)
             .HasColumnName("created_at")
-            .HasColumnType("timestamp without time zone")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         builder.Property(a => a.UpdatedAt)
             .HasColumnName("updated_at")
-            .HasColumnType("timestamp without time zone")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
     }
 }
