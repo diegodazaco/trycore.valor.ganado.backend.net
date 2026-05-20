@@ -66,8 +66,6 @@ Thumbs.db
 .idea_solutions/
 
 # Development
-**/appsettings.Development.json
-/tests/HiAndGo.Tests/TestResults
 **/definitions.json
 
 .env
