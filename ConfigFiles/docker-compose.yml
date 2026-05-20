@@ -1,0 +1,46 @@
+name: solution-trycore-backend
+
+networks:
+  backend_network:
+    driver: bridge
+
+services:
+  # ===========================================
+  # DATABASE SERVICE
+  # ===========================================
+
+  #-------Postgres 17.5 Database Service-------
+  postgres:
+     image: postgres:17.5
+     container_name: postgres-trycore
+     restart: always
+     shm_size: 128mb
+     ports:
+         - "5432:5432"
+     volumes:
+         - postgres_data:/var/lib/postgresql/data 
+     environment:
+         POSTGRES_USER: trycore_postgres
+         POSTGRES_PASSWORD: MySecurePassword123!
+         POSTGRES_DB: trycore_valor_ganado_db
+     networks:
+         - backend_network
+
+  ### Api TryCore Valor Ganado Service ###
+  # api:
+  #   container_name: trycore.valor.ganado.backend.api
+  #   build:
+  #     context: ../
+  #     dockerfile: src/trycore.valor.ganado.api/Dockerfile
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "5000:8080"
+  #   env_file:
+  #     - .env.develop
+  #   networks:
+  #     - backend_network
+
+volumes:
+    postgres_data:
+      driver: local
