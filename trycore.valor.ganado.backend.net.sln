@@ -9,15 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C2A62CE3-9DC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DBD58356-2F30-446D-8DAB-A2A43D2EBD94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.api", "ConfigFiles\trycore.valor.ganado.api\trycore.valor.ganado.api.csproj", "{FB2D3977-0CFF-475C-AB9A-191173205A32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.api", "src\trycore.valor.ganado.api\trycore.valor.ganado.api.csproj", "{FB2D3977-0CFF-475C-AB9A-191173205A32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.application", "ConfigFiles\trycore.valor.ganado.application\trycore.valor.ganado.application.csproj", "{B1EE076E-5E6E-466C-974B-49433B230F7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.application", "src\trycore.valor.ganado.application\trycore.valor.ganado.application.csproj", "{B1EE076E-5E6E-466C-974B-49433B230F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.configuration", "ConfigFiles\trycore.valor.ganado.configuration\trycore.valor.ganado.configuration.csproj", "{5D909572-9C59-40E3-BF6D-1B57C7C04CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.configuration", "src\trycore.valor.ganado.configuration\trycore.valor.ganado.configuration.csproj", "{5D909572-9C59-40E3-BF6D-1B57C7C04CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.domain", "ConfigFiles\trycore.valor.ganado.domain\trycore.valor.ganado.domain.csproj", "{814EB408-1D72-48F1-B5E2-8BA608BAE150}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.domain", "src\trycore.valor.ganado.domain\trycore.valor.ganado.domain.csproj", "{814EB408-1D72-48F1-B5E2-8BA608BAE150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.infrastructure", "ConfigFiles\trycore.valor.ganado.infrastructure\trycore.valor.ganado.infrastructure.csproj", "{A727EEAA-44BA-428F-A283-59B4B11A561C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.infrastructure", "src\trycore.valor.ganado.infrastructure\trycore.valor.ganado.infrastructure.csproj", "{A727EEAA-44BA-428F-A283-59B4B11A561C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trycore.valor.ganado.test", "tests\trycore.valor.ganado.test\trycore.valor.ganado.test.csproj", "{25777057-6E6E-473E-A875-973DE027150A}"
 EndProject
