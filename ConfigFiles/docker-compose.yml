@@ -26,6 +26,18 @@ services:
      networks:
          - backend_network
 
+  #-------EVM Calculator FastAPI Service-------
+  evm-calculator:
+    build:
+      context: ../services/evm-calculator
+      dockerfile: Dockerfile
+    container_name: evm-calculator-trycore
+    restart: always
+    ports:
+      - "8001:8001"
+    networks:
+      - backend_network
+
   ### Api TryCore Valor Ganado Service ###
   # api:
   #   container_name: trycore.valor.ganado.backend.api
@@ -34,6 +46,7 @@ services:
   #     dockerfile: src/trycore.valor.ganado.api/Dockerfile
   #   depends_on:
   #     - postgres
+  #     - evm-calculator
   #   ports:
   #     - "5000:8080"
   #   env_file:
