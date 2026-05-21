@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Moq;
 using trycore.valor.ganado.infrastructure.DAOs.Evm;
 using trycore.valor.ganado.infrastructure.Http;
