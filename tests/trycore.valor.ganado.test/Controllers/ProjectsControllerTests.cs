@@ -6,11 +6,6 @@ using trycore.valor.ganado.test.Infrastructure;
 
 namespace trycore.valor.ganado.test.Controllers;
 
-/// <summary>
-/// Pruebas de integración para ProjectsController.
-/// Cubre todos los endpoints: GET /api/projects, GET /api/projects/{id},
-/// POST /api/projects, PUT /api/projects/{id}, DELETE /api/projects/{id}.
-/// </summary>
 public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _client;
@@ -19,8 +14,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
     {
         _client = factory.CreateClient();
     }
-
-    // ─── POST /api/projects ───────────────────────────────────────────────────
 
     [Fact]
     public async Task Create_ConDatosValidos_Retorna201ConProyectoCreado()
@@ -42,8 +35,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
         Assert.NotEqual(Guid.Empty, body.Id);
     }
 
-    // ─── GET /api/projects ───────────────────────────────────────────────────
-
     [Fact]
     public async Task GetAll_Retorna200ConListaQueContieneProyectosCreados()
     {
@@ -57,7 +48,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
         Assert.Contains(body, p => p.Name == "Proyecto Lista Beta");
     }
 
-    // ─── GET /api/projects/{id} ───────────────────────────────────────────────
 
     [Fact]
     public async Task GetById_ProyectoSinActividades_Retorna200ConIndicadoresNulos()
@@ -102,7 +92,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── PUT /api/projects/{id} ───────────────────────────────────────────────
 
     [Fact]
     public async Task Update_ProyectoExistente_Retorna200ConDatosActualizados()
@@ -133,7 +122,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── DELETE /api/projects/{id} ────────────────────────────────────────────
 
     [Fact]
     public async Task Delete_ProyectoExistente_Retorna204SinContenido()
@@ -153,7 +141,6 @@ public class ProjectsControllerTests : IClassFixture<CustomWebApplicationFactory
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── Helpers ──────────────────────────────────────────────────────────────
 
     private async Task<ProjectSummaryResponse> CrearProyecto(string nombre)
     {

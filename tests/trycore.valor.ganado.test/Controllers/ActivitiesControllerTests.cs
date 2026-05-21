@@ -6,14 +6,6 @@ using trycore.valor.ganado.test.Infrastructure;
 
 namespace trycore.valor.ganado.test.Controllers;
 
-/// <summary>
-/// Pruebas de integración para ActivitiesController.
-/// Cubre todos los endpoints:
-/// POST /api/projects/{projectId}/activities,
-/// GET /api/activities/{id},
-/// PUT /api/activities/{id},
-/// DELETE /api/activities/{id}.
-/// </summary>
 public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _client;
@@ -22,8 +14,6 @@ public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFacto
     {
         _client = factory.CreateClient();
     }
-
-    // ─── POST /api/projects/{projectId}/activities ────────────────────────────
 
     [Fact]
     public async Task Create_EnProyectoExistente_Retorna201ConActividadCreada()
@@ -64,8 +54,6 @@ public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFacto
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── GET /api/activities/{id} ─────────────────────────────────────────────
-
     [Fact]
     public async Task GetById_ActividadExistente_Retorna200ConDatosCorrectos()
     {
@@ -89,7 +77,6 @@ public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFacto
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── PUT /api/activities/{id} ─────────────────────────────────────────────
 
     [Fact]
     public async Task Update_ActividadExistente_Retorna200ConDatosActualizados()
@@ -124,8 +111,6 @@ public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFacto
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
-    // ─── DELETE /api/activities/{id} ──────────────────────────────────────────
-
     [Fact]
     public async Task Delete_ActividadExistente_Retorna204SinContenido()
     {
@@ -143,8 +128,6 @@ public class ActivitiesControllerTests : IClassFixture<CustomWebApplicationFacto
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
-
-    // ─── Helpers ──────────────────────────────────────────────────────────────
 
     private async Task<ProjectSummaryResponse> CrearProyecto(string nombre)
     {

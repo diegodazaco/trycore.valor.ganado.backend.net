@@ -50,7 +50,6 @@ namespace trycore.valor.ganado.configuration
 
             var app = builder.Build();
 
-            // Ejecutar migraciones pendientes automáticamente al iniciar
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -76,7 +75,6 @@ namespace trycore.valor.ganado.configuration
                 }
             }
 
-            // CORS debe ir primero para cubrir preflight y cualquier redirección
             app.UseCors();
 
             app.UseSwagger();
