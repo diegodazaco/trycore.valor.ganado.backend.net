@@ -50,7 +50,6 @@ namespace trycore.valor.ganado.configuration
 
             var app = builder.Build();
 
-            // Ejecutar migraciones pendientes automáticamente al iniciar
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -58,17 +57,24 @@ namespace trycore.valor.ganado.configuration
                 var logger = loggerFactory.CreateLogger("Migrations");
                 try
                 {
-                    await db.Database.MigrateAsync();
-                    logger.LogInformation("Migraciones aplicadas correctamente.");
+                    if (db.Database.IsRelational())
+                    {
+                        await db.Database.MigrateAsync();
+                        logger.LogInformation("Migraciones aplicadas correctamente.");
+                    }
+                    else
+                    {
+                        await db.Database.EnsureCreatedAsync();
+                        logger.LogInformation("Base de datos en memoria inicializada.");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, "Error al aplicar migraciones de la base de datos.");
+                    logger.LogError(ex, "Error al inicializar la base de datos.");
                     throw;
                 }
             }
 
-            // CORS debe ir primero para cubrir preflight y cualquier redirección
             app.UseCors();
 
             app.UseSwagger();
