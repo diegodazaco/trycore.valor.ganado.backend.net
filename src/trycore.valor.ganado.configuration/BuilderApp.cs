@@ -37,6 +37,14 @@ namespace trycore.valor.ganado.configuration
                     options.IncludeXmlComments(xmlPath);
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+            });
+
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -69,6 +77,7 @@ namespace trycore.valor.ganado.configuration
 
             app.MapGet("/", () => Results.Redirect("/swagger-ui")).ExcludeFromDescription();
 
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
