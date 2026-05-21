@@ -134,11 +134,15 @@ Deberías ver tres servicios en estado `running`:
 
 ### 4. Acceder a la API
 
-| Recurso           | URL                                    |
-|-------------------|----------------------------------------|
-| Swagger UI        | http://localhost:5000/swagger-ui       |
-| API base          | http://localhost:5000/api              |
-| EVM Calculator    | http://localhost:8001/docs             |
+> Para explorar los endpoints desde el navegador se deben usar las siguientes rutas de documentación:
+
+| Servicio          | URL en el navegador                    | Sufijo requerido |
+|-------------------|----------------------------------------|------------------|
+| API .NET (Swagger)| http://localhost:5000/swagger-ui       | `/swagger-ui`    |
+| FastAPI (EVM)     | http://localhost:8001/docs             | `/docs`          |
+| API base (REST)   | http://localhost:5000/api              | `/api`           |
+
+> **Nota:** Al ingresar a `http://localhost:5000/` o `http://localhost:8001/` sin sufijo, ambos servicios redirigen automáticamente a su documentación correspondiente.
 
 ### 5. Detener los servicios
 
