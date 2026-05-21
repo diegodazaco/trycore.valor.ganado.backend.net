@@ -68,6 +68,9 @@ namespace trycore.valor.ganado.configuration
                 }
             }
 
+            // CORS debe ir primero para cubrir preflight y cualquier redirección
+            app.UseCors();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -75,11 +78,10 @@ namespace trycore.valor.ganado.configuration
                 options.RoutePrefix = "swagger-ui";
             });
 
-            app.MapGet("/", () => Results.Redirect("/swagger-ui")).ExcludeFromDescription();
-
-            app.UseCors();
             app.UseHttpsRedirection();
             app.UseAuthorization();
+
+            app.MapGet("/", () => Results.Redirect("/swagger-ui")).ExcludeFromDescription();
             app.MapControllers();
             await app.RunAsync();
         }
