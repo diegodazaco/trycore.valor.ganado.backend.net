@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -65,6 +66,8 @@ namespace trycore.valor.ganado.configuration
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Trycore EVM API v1");
                 options.RoutePrefix = "swagger-ui";
             });
+
+            app.MapGet("/", () => Results.Redirect("/swagger-ui")).ExcludeFromDescription();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
